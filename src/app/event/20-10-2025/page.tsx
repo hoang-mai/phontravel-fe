@@ -120,6 +120,22 @@ export default function Event2010Page() {
           </div>
         </motion.div>
 
+
+        {/* Questions Button */}
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+        >
+          <Link
+            href="/event/20-10-2025/questions"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+          >
+            🎯 Tham gia câu hỏi vui
+          </Link>
+        </motion.div>
+
         {/* Additional info */}
         <motion.div
           className="mt-8 p-6 bg-white rounded-2xl border border-gray-200"
@@ -131,11 +147,11 @@ export default function Event2010Page() {
           <ul className="space-y-2 text-gray-700">
             <li className="flex items-start gap-2">
               <span className="text-pink-500">•</span>
-              <span>Vui lòng xác nhận tham dự để chúng tôi chuẩn bị chu đáo</span>
+              <span>Vui lòng xác nhận tham dự để các bạn nam chuẩn bị chu đáo</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-pink-500">•</span>
-              <span>Trang phục thoải mái, lịch sự</span>
+              <span>Trang phục thoải mái</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-pink-500">•</span>
@@ -143,6 +159,7 @@ export default function Event2010Page() {
             </li>
           </ul>
         </motion.div>
+
       </main>
     </div>
   );
