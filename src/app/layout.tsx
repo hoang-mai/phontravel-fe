@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "PhonTravel",
     images: [
       {
-        url: "https://phontravel.vercel.app/Logo.jpg",
+        url: "https://phontravel-fe.vercel.app/Logo.jpg",
         width: 800,
         height: 600,
       },
