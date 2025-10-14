@@ -18,6 +18,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PhonTravel - Những Chuyến Phiêu Lưu Của Nhóm",
   description: "Blog về kỷ niệm du lịch của nhóm bạn",
+  openGraph:{
+    title: "PhonTravel - Những Chuyến Phiêu Lưu Của Nhóm",
+    description: "Blog về kỷ niệm du lịch của nhóm bạn",
+    url: "https://phontravel-fe.vercel.app/",
+    siteName: "PhonTravel",
+    images: [
+      {
+        url: "https://phontravel.vercel.app/Logo.jpg",
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "vi_VN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
