@@ -84,7 +84,7 @@ export default function Event2010Page() {
                     <span>📅</span> Thời gian
                   </h3>
                   <p className="text-gray-700 text-lg">
-                    Thứ Bảy, 18/10/2025
+                    19h-19h30, Thứ Bảy, 18/10/2025
                   </p>
                 </div>
 
