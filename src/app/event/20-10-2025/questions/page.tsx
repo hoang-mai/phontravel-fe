@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import {useState} from "react";
 
 interface Question {
   id: number;
@@ -22,43 +22,73 @@ interface AnswerRecord {
 const questions: Question[] = [
   {
     id: 1,
-    question: "Ngày Phụ nữ Việt Nam 20/10 được chính thức công nhận vào năm nào?",
-    options: ["1930", "1945", "1960", "1970"],
-    correctAnswer: 2,
-    explanation: "Ngày Phụ nữ Việt Nam 20/10 được chính thức công nhận vào năm 1930 tại Hội nghị thành lập Hội Liên hiệp Phụ nữ Việt Nam."
+    question: "Người anh mà Phồn tin tưởng nhất là anh nào?",
+    options: ["A. Anh Hoàng", "B. Anh Trai Say Hi", "C. Anh Lại Thị", "D. Anh Chũng"],
+    correctAnswer: 3,
+    explanation: "Vì đó là người anh mà Phồn yêu quý nhất."
   },
   {
     id: 2,
-    question: "Loài hoa nào thường được tặng nhiều nhất vào ngày 20/10?",
-    options: ["Hoa tulip", "Hoa hồng", "Hoa sen", "Hoa cúc"],
+    question: "Địa điểm du lịch đầu tiên mà Phồn đi?",
+    options: ["A. Hạ Long", "B. Ba Vì", "C. Huế", "D. Đà Nẵng"],
     correctAnswer: 1,
-    explanation: "Hoa hồng là loài hoa được yêu thích và tặng nhiều nhất vào ngày 20/10, tượng trưng cho tình yêu và sự trân trọng."
+    explanation: "Nơi chúng ta đã bắt đầu cùng nhau."
   },
   {
     id: 3,
-    question: "Màu sắc nào thường được dùng để trang trí cho ngày 20/10?",
-    options: ["Xanh lá", "Hồng và tím", "Vàng", "Đỏ"],
-    correctAnswer: 1,
-    explanation: "Màu hồng và tím thường được sử dụng vì chúng tượng trưng cho sự dịu dàng, nữ tính và quý phái."
+    question: "Anh zai Phồn nào hát hay nhất?",
+    options: ["A. Anh Chũng", "B. Tuấn chó", "C. Hoàng Sự", "D. Minh ái"],
+    correctAnswer: 2,
+    explanation: "Là ghế vì không phải bàn."
   },
   {
     id: 4,
-    question: "Món quà nào dưới đây KHÔNG phổ biến vào ngày 20/10?",
-    options: ["Hoa", "Nước hoa", "Dụng cụ sửa xe", "Socola"],
-    correctAnswer: 2,
-    explanation: "Dụng cụ sửa xe không phải là món quà phổ biến cho ngày 20/10. Thường thì hoa, nước hoa, và socola được ưa chuộng hơn."
+    question: "Anh zai nào tinh tế nhất?",
+    options: ["A. Hoàng Tuấn", "B. Tuấn ỉn", "C. Tuấn chó", "D. Hoàng Sự"],
+    correctAnswer: 1,
+    explanation: "Anh zai đủ 4 tế. Kinh tế, tinh tế, tử tế, thực tế"
   },
   {
     id: 5,
-    question: "Ngày 20/10 là dịp để làm gì?",
-    options: [
-      "Chỉ tặng quà cho mẹ",
-      "Tôn vinh và tri ân phụ nữ Việt Nam",
-      "Chỉ dành cho người yêu",
-      "Ngày nghỉ lễ chính thức"
-    ],
-    correctAnswer: 1,
-    explanation: "Ngày 20/10 là ngày để tôn vinh và tri ân tất cả phụ nữ Việt Nam - mẹ, chị, em, bạn gái, đồng nghiệp..."
+    question: "Anh zai nào học giỏi nhất?",
+    options: ["A. Hoàng Sự", "B. Tuấn chó", "C. Tuấn ỉn", "D. Hoàng Tuấn"],
+    correctAnswer: 3,
+    explanation: "Anh zai IT1 mà"
+  },
+  {
+    id: 6,
+    question: "Anh zai nào hài hước nhất?",
+    options: ["A. Anh Chũng", "B. Tuấn chó", "C. Hoàng Sự", "D. Minh ái"],
+    correctAnswer: 3,
+    explanation: "Anh zai này chọc chó vui nhất"
+  },
+  {
+    id: 7,
+    question: "Anh zai nào nhiệt tình nhất?",
+    options: ["A. Hoàng Tuấn", "B. Tuấn ỉn", "C. Tuấn chó", "D. Hoàng Sự"],
+    correctAnswer: 2,
+    explanation: "Anh zai luôn xuất hiện trong mọi cuộc vui của Phồn."
+  },
+  {
+    id: 8,
+    question: "Sinh nhật Phồn vào tháng mấy?",
+    options: ["A. Tháng 8", "B. Tháng 7", "C. Tháng 10", "D. Tháng 11"],
+    correctAnswer: 2,
+    explanation: "Sinh nhật Phồn là 31/7"
+  },
+  {
+    id: 9,
+    question: "Lúc Tú Anh đi Sóc Sơn HT đang làm gì?",
+    options: ["A. Khóc", "B. Rình", "C. Ôn thi", "D. Suy"],
+    correctAnswer: 2,
+    explanation: "HT đang ôn thi nên không đi rình được"
+  },
+  {
+    id: 10,
+    question: "Ngày lập nhóm mess là ngày nào?",
+    options: ["A. 29/06", "B. 30/06", "C. 01/07", "D. 02/07"],
+    correctAnswer: 0,
+    explanation: "Câu hỏi quyết định mà"
   }
 ];
 
@@ -125,7 +155,7 @@ export default function QuestionsPage() {
 
     answerRecords.forEach(record => {
       if (!playerMap.has(record.playerName)) {
-        playerMap.set(record.playerName, { correct: 0, total: 0, questions: [] });
+        playerMap.set(record.playerName, {correct: 0, total: 0, questions: []});
       }
       const stats = playerMap.get(record.playerName)!;
       stats.total += 1;
@@ -150,7 +180,7 @@ export default function QuestionsPage() {
     const playerStats = getPlayerStats();
 
     return (
-      <div className="font-sans min-h-screen p-8 pb-20 sm:p-20 bg-gradient-to-br from-pink-50 via-purple-50 to-pink-50">
+      <div className="font-sans min-h-screen p-8 pb-20 sm:p-20 bg-transparent">
         <main className="max-w-4xl mx-auto">
           <Link href="/event/20-10-2025" className="inline-block mb-8 text-purple-600 hover:underline">
             ← Quay lại Thiệp mời
@@ -158,21 +188,22 @@ export default function QuestionsPage() {
 
           <motion.div
             className="relative bg-white border-2 border-pink-300 rounded-3xl p-8 md:p-12 shadow-2xl mb-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            initial={{opacity: 0, scale: 0.9}}
+            animate={{opacity: 1, scale: 1}}
+            transition={{duration: 0.6}}
           >
             <div className="text-center">
               <motion.div
                 className="text-8xl mb-6"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                initial={{scale: 0}}
+                animate={{scale: 1}}
+                transition={{delay: 0.3, type: "spring", stiffness: 200}}
               >
                 🎉
               </motion.div>
 
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              <h1
+                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
                 Hoàn thành!
               </h1>
 
@@ -208,9 +239,9 @@ export default function QuestionsPage() {
           {/* Player Statistics */}
           <motion.div
             className="bg-white border-2 border-purple-200 rounded-3xl p-8 md:p-12 shadow-2xl mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: 0.6, delay: 0.3}}
           >
             <h2 className="text-3xl font-bold text-purple-700 mb-6 text-center">
               👥 Thống kê người chơi
@@ -221,9 +252,9 @@ export default function QuestionsPage() {
                 <motion.div
                   key={player.name}
                   className="bg-gradient-to-r from-pink-50 to-purple-50 p-6 rounded-2xl border-2 border-pink-200"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
+                  initial={{opacity: 0, x: -20}}
+                  animate={{opacity: 1, x: 0}}
+                  transition={{delay: idx * 0.1}}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
@@ -249,9 +280,9 @@ export default function QuestionsPage() {
                   <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                     <motion.div
                       className="bg-gradient-to-r from-pink-500 to-purple-600 h-2 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${player.percentage}%` }}
-                      transition={{ duration: 1, delay: idx * 0.1 + 0.5 }}
+                      initial={{width: 0}}
+                      animate={{width: `${player.percentage}%`}}
+                      transition={{duration: 1, delay: idx * 0.1 + 0.5}}
                     />
                   </div>
                 </motion.div>
@@ -262,9 +293,9 @@ export default function QuestionsPage() {
           {/* Statistics Section */}
           <motion.div
             className="bg-white border-2 border-purple-200 rounded-3xl p-8 md:p-12 shadow-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: 0.6, delay: 0.5}}
           >
             <h2 className="text-3xl font-bold text-purple-700 mb-6 text-center">
               📊 Chi tiết từng câu hỏi
@@ -272,25 +303,29 @@ export default function QuestionsPage() {
 
             {/* Summary Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl border-2 border-green-200 text-center">
+              <div
+                className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl border-2 border-green-200 text-center">
                 <div className="text-3xl mb-2">✅</div>
                 <div className="text-2xl font-bold text-green-700">{totalScore}</div>
                 <div className="text-sm text-green-600">Đúng</div>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-2xl border-2 border-red-200 text-center">
+              <div
+                className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-2xl border-2 border-red-200 text-center">
                 <div className="text-3xl mb-2">❌</div>
                 <div className="text-2xl font-bold text-red-700">{questions.length - totalScore}</div>
                 <div className="text-sm text-red-600">Sai</div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border-2 border-blue-200 text-center">
+              <div
+                className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl border-2 border-blue-200 text-center">
                 <div className="text-3xl mb-2">📝</div>
                 <div className="text-2xl font-bold text-blue-700">{questions.length}</div>
                 <div className="text-sm text-blue-600">Tổng số câu</div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border-2 border-purple-200 text-center">
+              <div
+                className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl border-2 border-purple-200 text-center">
                 <div className="text-3xl mb-2">🎯</div>
                 <div className="text-2xl font-bold text-purple-700">{percentage.toFixed(0)}%</div>
                 <div className="text-sm text-purple-600">Độ chính xác</div>
@@ -311,13 +346,13 @@ export default function QuestionsPage() {
                   <motion.div
                     key={q.id}
                     className={`p-6 rounded-2xl border-2 ${
-                      isCorrect 
-                        ? 'bg-green-50 border-green-300' 
+                      isCorrect
+                        ? 'bg-green-50 border-green-300'
                         : 'bg-red-50 border-red-300'
                     }`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.1 }}
+                    initial={{opacity: 0, x: -20}}
+                    animate={{opacity: 1, x: 0}}
+                    transition={{delay: idx * 0.1}}
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 text-3xl">
@@ -374,10 +409,11 @@ export default function QuestionsPage() {
         {/* Header */}
         <motion.div
           className="text-center mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{opacity: 0, y: -20}}
+          animate={{opacity: 1, y: 0}}
         >
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1
+            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
             🎯 Câu hỏi vui về 20/10
           </h1>
           <div className="flex justify-center items-center gap-4 text-lg text-gray-600">
@@ -390,14 +426,14 @@ export default function QuestionsPage() {
         {/* Progress bar */}
         <motion.div
           className="w-full bg-gray-200 rounded-full h-3 mb-8 overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
         >
           <motion.div
             className="bg-gradient-to-r from-pink-500 to-purple-600 h-3 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-            transition={{ duration: 0.5 }}
+            initial={{width: 0}}
+            animate={{width: `${((currentQuestion + 1) / questions.length) * 100}%`}}
+            transition={{duration: 0.5}}
           />
         </motion.div>
 
@@ -405,9 +441,9 @@ export default function QuestionsPage() {
         <motion.div
           className="relative bg-white border-2 border-pink-200 rounded-3xl p-8 md:p-12 shadow-2xl mb-8"
           key={currentQuestion}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{opacity: 0, x: 100}}
+          animate={{opacity: 1, x: 0}}
+          transition={{duration: 0.5}}
         >
           {/* Decorative elements */}
           <div className="absolute top-4 right-4 text-6xl opacity-10">🌸</div>
@@ -445,13 +481,14 @@ export default function QuestionsPage() {
                   onClick={() => handleAnswerClick(index)}
                   disabled={selectedAnswer !== null}
                   className={`w-full p-4 md:p-6 border-2 ${borderColor} ${bgColor} rounded-2xl text-left font-semibold text-lg transition-all duration-300 transform hover:scale-102 disabled:cursor-not-allowed ${textColor}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={selectedAnswer === null ? { scale: 1.02 } : {}}
+                  initial={{opacity: 0, y: 20}}
+                  animate={{opacity: 1, y: 0}}
+                  transition={{delay: index * 0.1}}
+                  whileHover={selectedAnswer === null ? {scale: 1.02} : {}}
                 >
                   <div className="flex items-center gap-4">
-                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-pink-200 text-pink-700 rounded-full font-bold">
+                    <span
+                      className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-pink-200 text-pink-700 rounded-full font-bold">
                       {String.fromCharCode(65 + index)}
                     </span>
                     <span className="flex-1">{option}</span>
@@ -467,9 +504,9 @@ export default function QuestionsPage() {
           {showExplanation && question.explanation && (
             <motion.div
               className="mt-8 p-6 bg-purple-50 border-2 border-purple-200 rounded-2xl"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ duration: 0.5 }}
+              initial={{opacity: 0, height: 0}}
+              animate={{opacity: 1, height: "auto"}}
+              transition={{duration: 0.5}}
             >
               <h3 className="font-bold text-purple-800 mb-2 flex items-center gap-2">
                 <span>💡</span> Giải thích:
@@ -482,9 +519,9 @@ export default function QuestionsPage() {
           {showNameInput && (
             <motion.div
               className="mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{opacity: 0, y: 20}}
+              animate={{opacity: 1, y: 0}}
+              transition={{duration: 0.5}}
             >
               <div className="bg-pink-50 border-2 border-pink-200 rounded-2xl p-6">
                 <h3 className="font-bold text-pink-800 mb-4 flex items-center gap-2">

@@ -11,6 +11,7 @@ export default function Navbar() {
     { name: "Trang Chủ", path: "/", icon: "🏠" },
     { name: "Các bạn nam", path: "/boy", icon: "👦" },
     { name: "Các bạn nữ", path: "/girl", icon: "👧" },
+    { name: "Du Lịch", path: "/travel", icon: "🌍" },
     { name: "Sự Kiện", path: "/event", icon: "🎉" },
   ];
 

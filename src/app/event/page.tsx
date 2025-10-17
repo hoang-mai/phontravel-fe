@@ -15,26 +15,6 @@ export default function EventPage() {
       attendees: 11,
       url: "/event/20-10-2025"
     },
-    {
-      id: 2,
-      title: "Tiệc BBQ Bãi Biển",
-      date: "10/09/2024",
-      location: "Bãi Biển Phuket",
-      description: "Hoàng hôn, đồ nướng và những người bạn tuyệt vời bên bờ biển.",
-      image: "🏖️",
-      attendees: 8,
-      url: "/event/bbq-bai-bien"
-    },
-    {
-      id: 3,
-      title: "Đón Năm Mới",
-      date: "01/01/2024",
-      location: "Chiang Mai",
-      description: "Chào đón năm mới với pháo hoa và lễ hội!",
-      image: "🎆",
-      attendees: 10,
-      url: "/event/don-nam-moi"
-    }
   ];
 
   const containerVariants = {

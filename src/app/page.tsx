@@ -1,38 +1,24 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
+import Image from "next/image";
+import React, {useState} from "react";
+import {members} from "@/untils/constant";
 
 export default function Home() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
-
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   return (
     <div className="font-sans min-h-screen p-8 pb-20 sm:p-20">
-      <main className="max-w-6xl mx-auto">
+      <main className="max-w-6xl mx-auto flex flex-col gap-12">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          className="text-center"
+          initial={{opacity: 0, y: -20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6}}
         >
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1
+            className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             PhonTravel
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-700">
@@ -41,78 +27,79 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{opacity: 0, y: 10}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6}}
+          whileHover={{scale: 1.02}}
         >
-          <motion.div variants={itemVariants}>
-            <Link href="/boy" className="group block">
-              <motion.div
-                className="bg-blue-50 border border-blue-100 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow"
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <div className="text-4xl mb-4">👦</div>
-                <h2 className="text-2xl font-bold mb-2 text-blue-700">
-                  Phần Nam
-                </h2>
-                <p className="text-gray-600">
-                  Những câu chuyện và cuộc phiêu lưu của các chàng trai
-                </p>
-              </motion.div>
-            </Link>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Link href="/girl" className="group block">
-              <motion.div
-                className="bg-pink-50 border border-pink-100 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow"
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <div className="text-4xl mb-4">👧</div>
-                <h2 className="text-2xl font-bold mb-2 text-pink-700">
-                  Phần Nữ
-                </h2>
-                <p className="text-gray-600">
-                  Những câu chuyện và cuộc phiêu lưu của các cô gái
-                </p>
-              </motion.div>
-            </Link>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Link href="/event" className="group block">
-              <motion.div
-                className="bg-purple-50 border border-purple-100 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow"
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <div className="text-4xl mb-4">🎉</div>
-                <h2 className="text-2xl font-bold mb-2 text-purple-700">
-                  Sự Kiện
-                </h2>
-                <p className="text-gray-600">
-                  Các sự kiện nhóm và khoảnh khắc đặc biệt
-                </p>
-              </motion.div>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="bg-gradient-to-r from-blue-100 to-purple-100 border border-gray-200 rounded-2xl p-8"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">Chào mừng đến với PhonTravel! ✈️</h3>
-          <p className="text-gray-700 mb-4">
-            Đây là không gian chung của chúng ta để ghi lại những chuyến đi, cuộc phiêu lưu và kỷ niệm cùng nhau.
-            Khám phá từng phần để đọc các câu chuyện, xem ảnh và sống lại những trải nghiệm tuyệt vời của chúng ta.
+          <p className="text-sm text-gray-600 mb-3 text-center">
+            Avatar của nhóm trong lần đi du lịch đầu tiên với nhau ở Ba Vì
           </p>
-          <p className="text-gray-700">
-            Nhấp vào bất kỳ phần nào ở trên để bắt đầu khám phá!
-          </p>
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <Image
+              src="/Logo.jpg"
+              alt="PhonTravel Logo"
+              width={2048}
+              height={1536}
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </motion.div>
+        <div>
+          <p className="text-lg font-semibold mb-4 text-center">Các thành viên trong nhóm</p>
+          <div className="overflow-x-auto rounded-lg shadow">
+            <table className="min-w-full">
+              <thead className="bg-gradient-to-r from-blue-600 to-indigo-600">
+              <tr>
+                <th className="px-4 py-3 text-left text-sm font-medium text-white">Tên</th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-white">Biệt danh</th>
+                <th className="px-4 py-3 text-left text-sm font-medium text-white">Vai trò</th>
+                <th className="px-4 py-3 text-right text-sm font-medium text-white">Hành động</th>
+              </tr>
+              </thead>
+              <tbody className="bg-white divide-y">
+              {members.map((member, idx) => (
+                <tr
+                  key={member.name}
+                  className={`transition-colors duration-150 ${idx % 2 === 0 ? 'bg-blue-50' : 'bg-white'} hover:bg-blue-100`}
+                >
+                  <td className="px-4 py-3 text-sm text-blue-900">{member.name}</td>
+                  <td className="px-4 py-3 text-sm text-blue-700">{member.nickname}</td>
+                  <td className="px-4 py-3 text-sm text-blue-700">{member.role}</td>
+                  <td className="px-4 py-3 text-sm text-right">
+                    <button
+                      onClick={() => setSelectedMember(member)}
+                      className="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-blue-600 text-blue-600 rounded-md text-sm hover:bg-blue-50 transition"
+                    >
+                      Xem chi tiết
+                    </button>
+                  </td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Details modal/drawer */}
+        {selectedMember && (
+          <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-4">
+            <div className="absolute inset-0 bg-black/40" onClick={() => setSelectedMember(null)}/>
+            <div className="relative w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-lg font-semibold text-blue-900 mb-2">{selectedMember.name}</h3>
+              <p className="text-sm text-blue-700 mb-1"><strong>Biệt danh:</strong> {selectedMember.nickname}</p>
+              <p className="text-sm text-blue-700 mb-4"><strong>Vai trò:</strong> {selectedMember.role}</p>
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => setSelectedMember(null)}
+                  className="px-3 py-1.5 bg-gray-200 text-gray-800 rounded-md text-sm hover:bg-gray-300 transition"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
