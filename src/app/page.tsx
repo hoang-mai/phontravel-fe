@@ -3,7 +3,7 @@
 import {motion} from "framer-motion";
 import Image from "next/image";
 import React, {useState} from "react";
-import {members} from "@/untils/constant";
+import {Member, members} from "@/untils/constant";
 
 export default function Home() {
 
