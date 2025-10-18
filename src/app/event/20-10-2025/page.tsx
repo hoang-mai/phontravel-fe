@@ -121,20 +121,20 @@ export default function Event2010Page() {
         </motion.div>
 
 
-        {/*/!* Questions Button *!/*/}
-        {/*<motion.div*/}
-        {/*  className="mt-8 text-center"*/}
-        {/*  initial={{ opacity: 0, y: 20 }}*/}
-        {/*  animate={{ opacity: 1, y: 0 }}*/}
-        {/*  transition={{ duration: 0.5, delay: 1.2 }}*/}
-        {/*>*/}
-        {/*  <Link*/}
-        {/*    href="/event/20-10-2025/questions"*/}
-        {/*    className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"*/}
-        {/*  >*/}
-        {/*    🎯 Tham gia câu hỏi vui*/}
-        {/*  </Link>*/}
-        {/*</motion.div>*/}
+        {/* Questions Button */}
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+        >
+          <Link
+            href="/event/20-10-2025/questions"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+          >
+            🎯 Tham gia câu hỏi vui
+          </Link>
+        </motion.div>
 
         {/* Additional info */}
         <motion.div

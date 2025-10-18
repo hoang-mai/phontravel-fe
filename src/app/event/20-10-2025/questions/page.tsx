@@ -3,6 +3,7 @@
 import {motion} from "framer-motion";
 import Link from "next/link";
 import {useState} from "react";
+import Image from "next/image";
 
 interface Question {
   id: number;
@@ -10,6 +11,10 @@ interface Question {
   options: string[];
   correctAnswer: number;
   explanation?: string;
+  imageUrl?: string;
+  isImageOptions?: boolean; // Đánh dấu nếu options là URL hình ảnh
+  optionImages?: string[]; // Mảng URL hình ảnh cho các đáp án
+  isVideo?: boolean; // Đánh dấu nếu câu hỏi có video liên quan
 }
 
 interface AnswerRecord {
@@ -22,73 +27,141 @@ interface AnswerRecord {
 const questions: Question[] = [
   {
     id: 1,
-    question: "Người anh mà Phồn tin tưởng nhất là anh nào?",
-    options: ["A. Anh Hoàng", "B. Anh Trai Say Hi", "C. Anh Lại Thị", "D. Anh Chũng"],
-    correctAnswer: 3,
-    explanation: "Vì đó là người anh mà Phồn yêu quý nhất."
+    question: "Sinh nhật Phồn vào tháng mấy?",
+    options: ["A. Tháng 6", "B. Tháng 7", "C. Tháng 8", "D. Tháng 9"],
+    correctAnswer: 1,
+    explanation: "Ai không biết nên vắt tay lên trán suy nghĩ lại "
   },
   {
     id: 2,
-    question: "Địa điểm du lịch đầu tiên mà Phồn đi?",
-    options: ["A. Hạ Long", "B. Ba Vì", "C. Huế", "D. Đà Nẵng"],
-    correctAnswer: 1,
-    explanation: "Nơi chúng ta đã bắt đầu cùng nhau."
+    question: "Anh trai Phồn nào hát hay nhất?",
+    options: ["A. Anh Chũng", "B. Tuấn Chó", "C. BM", "D. Minh Ái"],
+    correctAnswer: 2,
+    explanation: "BM hát hay nhất trong hội Phồn"
   },
   {
     id: 3,
-    question: "Anh zai Phồn nào hát hay nhất?",
-    options: ["A. Anh Chũng", "B. Tuấn chó", "C. Hoàng Sự", "D. Minh ái"],
-    correctAnswer: 2,
-    explanation: "Là ghế vì không phải bàn."
-  },
-  {
-    id: 4,
-    question: "Anh zai nào tinh tế nhất?",
-    options: ["A. Hoàng Tuấn", "B. Tuấn ỉn", "C. Tuấn chó", "D. Hoàng Sự"],
-    correctAnswer: 1,
-    explanation: "Anh zai đủ 4 tế. Kinh tế, tinh tế, tử tế, thực tế"
-  },
-  {
-    id: 5,
-    question: "Anh zai nào học giỏi nhất?",
-    options: ["A. Hoàng Sự", "B. Tuấn chó", "C. Tuấn ỉn", "D. Hoàng Tuấn"],
-    correctAnswer: 3,
-    explanation: "Anh zai IT1 mà"
-  },
-  {
-    id: 6,
-    question: "Anh zai nào hài hước nhất?",
-    options: ["A. Anh Chũng", "B. Tuấn chó", "C. Hoàng Sự", "D. Minh ái"],
-    correctAnswer: 3,
-    explanation: "Anh zai này chọc chó vui nhất"
-  },
-  {
-    id: 7,
-    question: "Anh zai nào nhiệt tình nhất?",
-    options: ["A. Hoàng Tuấn", "B. Tuấn ỉn", "C. Tuấn chó", "D. Hoàng Sự"],
-    correctAnswer: 2,
-    explanation: "Anh zai luôn xuất hiện trong mọi cuộc vui của Phồn."
-  },
-  {
-    id: 8,
-    question: "Sinh nhật Phồn vào tháng mấy?",
-    options: ["A. Tháng 8", "B. Tháng 7", "C. Tháng 10", "D. Tháng 11"],
-    correctAnswer: 2,
-    explanation: "Sinh nhật Phồn là 31/7"
-  },
-  {
-    id: 9,
-    question: "Lúc Tú Anh đi Sóc Sơn HT đang làm gì?",
-    options: ["A. Khóc", "B. Rình", "C. Ôn thi", "D. Suy"],
-    correctAnswer: 2,
-    explanation: "HT đang ôn thi nên không đi rình được"
-  },
-  {
-    id: 10,
     question: "Ngày lập nhóm mess là ngày nào?",
     options: ["A. 29/06", "B. 30/06", "C. 01/07", "D. 02/07"],
     correctAnswer: 0,
-    explanation: "Câu hỏi quyết định mà"
+    explanation: "Người nào trả lời đúng câu này thật là đỉnh"
+  },
+  {
+    id: 4,
+    question: "Anh trai nào nhiệt tình nhất?",
+    options: ["A. Hoàng Tuấn", "B. Tuấn Ỉn", "C. Tuấn Chó", "D. BM"],
+    correctAnswer: 2,
+    explanation: "Vì có mặt trong mọi kèo"
+  },
+  {
+    id: 5,
+    question: "Anh trai nào đa cấp nhất?",
+    options: ["A. Tuấn Ỉn", "B. Tuấn Chó", "C. A Chũng", "D. Minh Ái", "E. BM"],
+    correctAnswer: 4,
+    explanation: "BM dạo này đa cấp lắm"
+  },
+  {
+    id: 6,
+    question: '"They make you lose your shoes!" đang nói tới em xinh nào?',
+    options: ["A. Tú Anh", "B. Lan", "C. Trúc", "D. Thảo", "E. Thư"],
+    correctAnswer: 3,
+    explanation: "Lose shoes cách đọc gần giống Loose shoes -----> Đôi giày rộng :(((("
+  },
+  {
+    id: 7,
+    question: "Chúng ta lần đầu gặp lại nhau ở đâu?",
+    options: ["A. 1196 Đường Láng", "B. 263 Quan Hoa", "C. 39 Vũ Thạnh", "D. Hồ Đắc Di"],
+    correctAnswer: 0,
+    explanation: "Bữa nhậu lịch sử ngày hôm đó"
+  },
+  {
+    id: 8,
+    question: "Địa điểm du lịch đầu tiên mà Phồn đi",
+    options: ["A. Hình 1", "B. Hình 2", "C. Hình 3", "D. Hình 4"],
+    correctAnswer: 3,
+    explanation: "làng văn hóa mà",
+    isImageOptions: true,
+    optionImages: [
+      "/Ba vì.jpg",
+      "/Huế.jpg",
+      "/Hạ Long.jpg",
+      "/Làng văn hóa.jpg"
+    ]
+  },
+  {
+    id: 9,
+    question: "Người mà Phồn tin tưởng nhất là?",
+    options: ["A. Anh Hoàng", "B. Anh Trai Say Hi", "C. Anh Lại Thị", "D. Anh Chũng"],
+    correctAnswer: 3,
+    explanation: "Vì anh là bạn của chúng ta"
+  },
+  {
+    id: 10,
+    question: "Lúc nghe tin Tú Anh đi Sóc Sơn HT đang làm gì?",
+    options: ["A. Khóc", "B. Rình", "C. Ôn Thi", "D. Ngủ"],
+    correctAnswer: 2,
+    explanation: "Sau đấy là khóc và ngủ thiếp đi( Ai trả lời như này cho 10 phần quà)"
+  },
+  {
+    id: 11,
+    question: "Cũng trong vid này, ở nửa cuối Trúc đã nghi ngờ ai?",
+    options: ["A. Tuấn Chó", "B. Hoàng Tuấn", "C. BM", "D. Minh Ái"],
+    correctAnswer: 1,
+    explanation: "Trúc nghi ngờ Hoàng Tuấn",
+    imageUrl: "https://drive.google.com/file/d/11zyn_hiFVJK-zL6XYwU0tdTXMk7Q9R57/view",
+    isVideo: true
+  },
+  {
+    id: 12,
+    question: "Kết thúc chuyến đi Huế-Đà Nẵng cta đã mua lưu niệm ở đâu?",
+    options: ["A. Chợ Đà Nẵng", "B. Chợ Bắc Mỹ An", "C. Chợ Hàn", "D. Chợ Cồn"],
+    correctAnswer: 1,
+    explanation: "Chúng ta mua quà ở Chợ Bắc Mỹ An"
+  },
+  {
+    id: 13,
+    question: "Tổng số tiền mà cta đã mua quà là bao nhiêu?",
+    options: ["A. 3000k", "B. 3500k", "C. 4080k", "D. 4500k"],
+    correctAnswer: 2,
+    explanation: "Tổng cộng 4080k"
+  },
+  {
+    id: 14,
+    question: "Bạn thích kỉ niệm nào với Phồn nhất, Tại Sao?",
+    options: ["A. ", "B. ", "C. ", "D. "],
+    correctAnswer: 3,
+    explanation: "Mỗi kỉ niệm đều đẹp và ý nghĩa"
+  },
+  {
+    id: 15,
+    question: "Trong video này của Phồn, có bao nhiêu người mặc áo đen?",
+    options: ["A. 2 người", "B. 3 người", "C. 4 người", "D. 5 người"],
+    correctAnswer: 1,
+    imageUrl:"https://drive.google.com/file/d/11zyn_hiFVJK-zL6XYwU0tdTXMk7Q9R57/view",
+    isVideo: true,
+    explanation: "Có 3 người mặc áo đen"
+  },
+  {
+    id: 16,
+    question: "Anh trai nào nhiều tế nhất?",
+    options: ["A. Tuấn Ỉn", "B. Tuấn Chó", "C. A Chũng", "D. Minh Ái"],
+    correctAnswer: 0,
+    explanation: "Chỉ có 1 đáp án là con lợn"
+  },
+  {
+    id: 17,
+    question: "Hình ảnh này liên tưởng tới ai?",
+    options: ["A. Tú Anh", "B. Lan", "C. Trúc", "D. Thảo"],
+    correctAnswer: 0,
+    explanation: "Đây là hình ảnh liên tưởng đến Tú Anh",
+    imageUrl: "/Máy sấy tóc.webp"
+  },
+  {
+    id: 18,
+    question: "Con số 06 liên tưởng tới anh trai nào?",
+    options: ["A. Tuấn Ỉn", "B. Tuấn Chó", "C. A Chũng", "D. Minh Ái", "E. BM"],
+    correctAnswer: 2,
+    explanation: "31/03/2025"
   }
 ];
 
@@ -453,7 +526,47 @@ export default function QuestionsPage() {
             {question.question}
           </h2>
 
-          <div className="space-y-4">
+          {question.imageUrl && !question.isVideo && (
+            <div className="mb-6">
+              <Image
+                src={question.imageUrl}
+                alt="Question Image"
+                width={220}
+                height={220}
+                className="flex item-center rounded-2xl border-2 border-pink-200"
+              />
+            </div>
+          )}
+
+          {question.isVideo && question.imageUrl && (
+            <div className="mb-6">
+              <motion.div
+                className="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-2xl border-2 border-pink-300"
+                initial={{opacity: 0, scale: 0.9}}
+                animate={{opacity: 1, scale: 1}}
+                transition={{duration: 0.6}}
+              >
+                <div className="flex flex-col items-center gap-4">
+                  <div className="text-6xl">🎬</div>
+                  <p className="text-lg font-semibold text-gray-800 text-center">
+                    Xem video để trả lời câu hỏi này
+                  </p>
+                  <a
+                    href={question.imageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                  >
+                    <span>▶️</span>
+                    <span>Mở video</span>
+                    <span>🔗</span>
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          <div className={`space-y-4 ${question.isImageOptions ? 'grid grid-cols-2 gap-4' : ''}`}>
             {question.options.map((option, index) => {
               const isSelected = selectedAnswer === index;
               const isCorrect = index === question.correctAnswer;
@@ -475,6 +588,43 @@ export default function QuestionsPage() {
                 }
               }
 
+              // Nếu có optionImages, hiển thị ảnh
+              if (question.isImageOptions && question.optionImages && question.optionImages[index]) {
+                return (
+                  <motion.button
+                    key={index}
+                    onClick={() => handleAnswerClick(index)}
+                    disabled={selectedAnswer !== null}
+                    className={`relative p-4 border-2 ${borderColor} ${bgColor} rounded-2xl transition-all duration-300 transform hover:scale-102 disabled:cursor-not-allowed ${textColor} overflow-hidden`}
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{delay: index * 0.1}}
+                    whileHover={selectedAnswer === null ? {scale: 1.02} : {}}
+                  >
+                    <div className="relative">
+                      <Image
+                        src={question.optionImages[index]}
+                        width={2000}
+                        height={2500}
+                        alt={option}
+                        className="w-full h-auto object-cover rounded-lg mb-2"
+                      />
+                      <div className="absolute top-2 left-2 w-8 h-8 flex items-center justify-center bg-pink-200 text-pink-700 rounded-full font-bold">
+                        {String.fromCharCode(65 + index)}
+                      </div>
+                      {showResult && isCorrect && (
+                        <div className="absolute top-2 right-2 text-3xl">✅</div>
+                      )}
+                      {showResult && isSelected && !isCorrect && (
+                        <div className="absolute top-2 right-2 text-3xl">❌</div>
+                      )}
+                    </div>
+                    <p className="text-sm font-semibold text-center mt-2">{option}</p>
+                  </motion.button>
+                );
+              }
+
+              // Hiển thị text như cũ
               return (
                 <motion.button
                   key={index}
