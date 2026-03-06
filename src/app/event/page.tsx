@@ -15,6 +15,16 @@ export default function EventPage() {
       attendees: 11,
       url: "/event/20-10-2025"
     },
+    {
+      id: 2,
+      title: "8/3 - Ngày Quốc tế Phụ nữ",
+      date: "08/03/2026",
+      location: "Thiệp chúc mừng online",
+      description: "Chúc mừng ngày Quốc tế Phụ nữ 8/3! Gửi đến những người phụ nữ tuyệt vời nhất những lời chúc tốt đẹp! 💐",
+      image: "🌹",
+      attendees: 11,
+      url: "/event/08-03-2026"
+    },
   ];
 
   const containerVariants = {
