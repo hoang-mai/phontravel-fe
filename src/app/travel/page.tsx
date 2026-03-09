@@ -1,6 +1,5 @@
 
 export default function TravelPage() {
-  // Fake trips data for demo / development
   const trips = [
     {
       id: 1,
@@ -18,7 +17,7 @@ export default function TravelPage() {
       location: "Hạ Long",
       image: "🏖️",
       excerpt: "Tắm biển, nướng hải sản và hát hò suốt đêm.",
-      participants: 10
+      participants: 11
     },
     {
       id: 3,
@@ -27,7 +26,7 @@ export default function TravelPage() {
       location: "Huế",
       image: "🏮",
       excerpt: "Đèn lồng, cà phê phố cổ và món ăn tuyệt vời.",
-      participants: 6
+      participants: 11
     },
     {
       id: 4,
@@ -36,7 +35,7 @@ export default function TravelPage() {
       location: "Đà Nẵng",
       image: "⛰️",
       excerpt: "Ngắm biển mây và thử thách đường đèo ấn tượng.",
-      participants: 10
+      participants: 11
     },
   ];
 
